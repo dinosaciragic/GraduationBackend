@@ -1,0 +1,19 @@
+const jwt = require('jsonwebtoken');
+const constants = require('../shared/constants');
+
+// Middleware to check if token is valid
+module.exports = function (req, res, next) {
+    const token = req.header('Authorization');
+
+    if (!token) {
+        return res.status(401).send('Access Denied');
+    }
+
+    try {
+        const verified = jwt.verify(token, constants.TOKEN_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(400).send('Invalid Token')
+    }
+}
