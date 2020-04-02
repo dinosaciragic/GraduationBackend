@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 const uri = "mongodb+srv://dinosaciragic:jebogadan@graduation-8ejos.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(uri, { useNewUrlParser: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MangoDB Connected..'))
     .catch(err => console.log(err))
 
@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 
 // Route middlewares
 app.use('/api/user', require('./routes/auth'));
+app.use('/api/drugs', require('./routes/drugs'));
 
 
 const PORT = process.env.PORT || 3000;
