@@ -29,13 +29,14 @@ router.post('/add', verify, (req, res) => {
 function paginatedResults(model) {
     return async (req, res, next) => {
         const page = req.query.page;
-        const limit = 10;
+        const search = req.query.searchTerm;
+        const limit = 15;
 
         const startIndex = (page - 1) * limit;
-        const endIndex = page * limit;
 
         try {
-            const results = await model.find().limit(limit).skip(startIndex).exec();
+            var regex = new RegExp(search, 'i');  // RegEdp works as contains for find function and 'i' makes it case insensitive
+            const results = await model.find({ name: regex }).limit(limit).skip(startIndex).exec();
             res.paginatedResults = results;
             next();
         } catch (error) {
