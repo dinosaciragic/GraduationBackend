@@ -30,7 +30,7 @@ function paginatedResults(model) {
     return async (req, res, next) => {
         const page = req.query.page;
         const search = req.query.searchTerm;
-        const limit = 15;
+        const limit = 12;
 
         const startIndex = (page - 1) * limit;
 
