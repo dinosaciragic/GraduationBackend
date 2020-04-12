@@ -6,6 +6,16 @@ const constants = require('../shared/constants');
 
 // User model
 const User = require('../models/User');
+
+// Get user by id
+router.post('/single', (req, res) => {
+    const { id } = req.body;
+
+    User.findOne({ _id: id }, { email: true, isClient: true, location: true }).then(user => {
+        res.send(user)
+    });
+});
+
 // api/user/register
 router.post('/register', (req, res) => {
     const { email, password, location, isClient } = req.body;
