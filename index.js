@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 // Route middlewares
 app.use('/api/user', require('./routes/auth'));
 app.use('/api/drugs', require('./routes/drugs'));
+app.use('/api/orders', require('./routes/orders'));
 
 
 const PORT = process.env.PORT || 3000;
