@@ -27,6 +27,7 @@ router.post('/add', verify, (req, res) => {
 
 });
 
+// get user orders
 router.post('/userOrders', verify, async (req, res) => {
     try {
         const results = await Order.find({ userId: req.body.userId });
@@ -36,20 +37,29 @@ router.post('/userOrders', verify, async (req, res) => {
     }
 });
 
-router.post('/workerOrders', verify, paginatedResults(Order), (req, res) => {
+// get worker orders paged
+router.post('/workerOrders/:page', verify, paginatedResults(Order), (req, res) => {
     res.send(res.paginatedResults);
 });
 
-router.put('/:id', verify, (req, res, next) => {
+// Get order by id
+router.get('/single/:id', verify, (req, res) => {
+    Order.findOne({ _id: req.params.id }).then(order => {
+        res.send(order)
+    });
+});
+
+// edit order
+router.put('/edit/:id', verify, (req, res, next) => {
     Order.findByIdAndUpdate({ _id: req.params.id }, req.body).then((updatedOrder) => {
-        res.send(updatedOrder);
+        res.send({ updatedOrder: true });
     });
 });
 
 // Pagination middleware
 function paginatedResults(model) {
     return async (req, res, next) => {
-        const page = req.query.page;
+        const page = req.params.page;
         const limit = 12;
 
         const startIndex = (page - 1) * limit;
