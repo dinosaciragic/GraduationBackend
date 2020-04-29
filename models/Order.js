@@ -13,9 +13,8 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    contctPhone: {
-        type: Number,
-        required: true
+    contactPhone: {
+        type: Number
     },
     itemsCost: {
         type: Number,
@@ -36,6 +35,9 @@ const OrderSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    notes: {
+        type: String
     }
 });
 
