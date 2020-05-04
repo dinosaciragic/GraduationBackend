@@ -38,6 +38,9 @@ const OrderSchema = new mongoose.Schema({
     },
     notes: {
         type: String
+    },
+    isDelivered: {
+        type: Boolean
     }
 });
 
