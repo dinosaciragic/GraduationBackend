@@ -33,6 +33,8 @@ app.use('/api/user', require('./routes/auth'));
 app.use('/api/drugs', require('./routes/drugs'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/groceries', require('./routes/groceries'));
+app.use('/api/shops', require('./routes/shops'));
+app.use('/api/restaurants', require('./routes/restaurants'));
 
 
 const PORT = process.env.PORT || 3000;

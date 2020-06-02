@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 
-const GrocerieSchema = new mongoose.Schema({
+const RestaurantItemSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    category: {
+    restaurantName: {
         type: String,
         required: true
-    },
-    subCategory: {
-        type: String
     },
     price: {
         type: Number,
@@ -21,6 +18,6 @@ const GrocerieSchema = new mongoose.Schema({
     }
 });
 
-const Grocerie = mongoose.model('Grocerie', GrocerieSchema);
+const RestaurantItem = mongoose.model('RestaurantItem', RestaurantItemSchema);
 
-module.exports = Grocerie;
+module.exports = RestaurantItem;
